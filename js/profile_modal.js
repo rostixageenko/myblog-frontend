@@ -10,8 +10,6 @@ function setButtonDisabled(button, disabled = true) {
 // МОДАЛЬНОЕ ОКНО
 // ================================
 
-// const API_URL = 'http://localhost:8080/signUp_page';
-
 const adminBtn = document.getElementById('admin-btn');
 const adminBtnsMobile = document.querySelectorAll('.mobile-admin');
 const modal = document.getElementById('admin-modal');
