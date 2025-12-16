@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Подтверждение — MyBlog</title>
+        <link rel="stylesheet" href="../css/reset_confirm.css" />
+        <link rel="stylesheet" href="../css/style_sign_register.css" />
+        <link rel="icon" href="../logo/red-logo-min.png" type="image/png">
+        <link rel="icon" href="../logo/head-logo.svg" type="image/png">
+    </head>
+
+    <body>
+        <div class="layout">
+            <!-- Левая часть (заменена на Reset Password) -->
+            <div class="card">
+                <a
+                    href="login.html"
+                    class="logo-block"
+                    style="margin-bottom: 10px"
+                >
+                    <img
+                        src="../logo/red-logo.png"
+                        class="logo-img"
+                        alt="MyBlog Logo"
+                    />
+                </a>
+
+                <div class="reset-box">
+                    <a href="login.html" class="back-link">
+                        <span class="back-arrow">←</span>
+                        <span class="back-text">Назад</span>
+                    </a>
+
+                    <h1 class="reset-title">Подтверждение данных</h1>
+                    <div id="confirm-message" class="msg-box"></div>
+                    <p style="font-size: 14px; color: #444; margin-top: 10px">
+                        Мы отправим вам код подтверждения. Введите его в поле
+                        ниже.
+                    </p>
+
+                    <form id="reset-form">
+                        <label>Код подтверждения</label>
+                        <input
+                            type="text"
+                            id="confirm-code"
+                            class="input"
+                            required
+                        />
+
+                        <button
+                            type="submit"
+                            class="btn"
+                            style="margin-top: 25px"
+                        >
+                            Подтвердить код
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Правая часть (фон) -->
+            <div class="side-gradient">
+                <div class="reviews-center">
+                    <div class="reviews-list">
+                        <!-- Оригинальные карточки -->
+                        <div class="reviews-masonry">
+                            <div class="review-card">
+                                <img src="../avatar/user1.svg" />
+                                <p>
+                                    Настройка блога прошла легко. Всё работало
+                                    сразу без каких-либо ошибок и проблем.
+                                </p>
+                                <span>— Алексей Иванов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user3.svg" />
+                                <p>
+                                    Как блогер с 10 летним опытом, я использовал
+                                    множество систем. MyBlog входит в мою тройку
+                                    лучших. Внимание к деталям впечатляет.
+                                    Процесс добавления и редактирования записей
+                                    просто заслуживает похвалы. Кроме того,
+                                    функционал платформы позволяет создавать
+                                    сложные записи без лишнего кода. Поддержка
+                                    отзывчивая и всегда помогает.
+                                </p>
+                                <span>— Марина Смирнова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user4.svg" />
+                                <p>
+                                    MyBlog меняет правила игры. Для любого
+                                    блогера — это недостающий инструмент. Всё
+                                    невероятно просто в использовании.
+                                </p>
+                                <span>— Дмитрий Кузнецов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user2.svg" />
+                                <p>
+                                    Я не знаю, как бы я вел блог без MyBlog. Всё
+                                    необходимое здесь есть, и платформа
+                                    сэкономила мне недели работы.
+                                </p>
+                                <span>— Ольга Петрова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user5.svg" />
+                                <p>
+                                    Вы пробовали MyBlog? Это отличное решение
+                                    для ведения блога. Структура простая, гибкая
+                                    и очень функциональная.
+                                </p>
+                                <span>— Сергей Лебедев</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user6.svg" />
+                                <p>
+                                    Спасибо за поддержку! MyBlog изменил способ
+                                    ведения блога. Большое уважение команде — вы
+                                    делаете потрясающую работу.
+                                </p>
+                                <span>— Наталья Федорова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user7.svg" />
+                                <p>
+                                    Я не ожидал такого удобства. UX чистый, всё
+                                    логично, и редактирование записей проходит
+                                    без проблем. Интерфейс интуитивно понятный,
+                                    а все функции работают быстро. Это реально
+                                    упрощает ведение блога и экономит много
+                                    времени.
+                                </p>
+
+                                <span>— Иван Соколов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user8.svg" />
+                                <p>
+                                    MyBlog реально экономит время, вместо того
+                                    чтобы создавать лишние трудности. Рекомендую
+                                    всем. Настройка прошла легко, и всё работало
+                                    мгновенно. Отличный опыт! Это полностью
+                                    изменило мой процесс управления блогом.
+                                </p>
+                                <span>— Елена Морозова</span>
+                            </div>
+                        </div>
+
+                        <!-- Дублируем для бесконечной прокрутки -->
+                        <div class="reviews-masonry">
+                            <div class="review-card">
+                                <img src="../avatar/user1.svg" />
+                                <p>
+                                    Настройка блога прошла легко. Всё работало
+                                    сразу без каких-либо ошибок и проблем.
+                                </p>
+                                <span>— Алексей Иванов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user3.svg" />
+                                <p>
+                                    Как блогер с 10 летним опытом, я использовал
+                                    множество систем. MyBlog входит в мою тройку
+                                    лучших. Внимание к деталям впечатляет.
+                                    Процесс добавления и редактирования записей
+                                    просто заслуживает похвалы. Кроме того,
+                                    функционал платформы позволяет создавать
+                                    сложные записи без лишнего кода. Поддержка
+                                    отзывчивая и всегда помогает.
+                                </p>
+                                <span>— Марина Смирнова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user4.svg" />
+                                <p>
+                                    MyBlog меняет правила игры. Для любого
+                                    блогера — это недостающий инструмент. Всё
+                                    невероятно просто в использовании.
+                                </p>
+                                <span>— Дмитрий Кузнецов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user2.svg" />
+                                <p>
+                                    Я не знаю, как бы я вел блог без MyBlog. Всё
+                                    необходимое здесь есть, и платформа
+                                    сэкономила мне недели работы.
+                                </p>
+                                <span>— Ольга Петрова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user5.svg" />
+                                <p>
+                                    Вы пробовали MyBlog? Это отличное решение
+                                    для ведения блога. Структура простая, гибкая
+                                    и очень функциональная.
+                                </p>
+                                <span>— Сергей Лебедев</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user6.svg" />
+                                <p>
+                                    Спасибо за поддержку! MyBlog изменил способ
+                                    ведения блога. Большое уважение команде — вы
+                                    делаете потрясающую работу.
+                                </p>
+                                <span>— Наталья Федорова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user7.svg" />
+                                <p>
+                                    Честно, я не ожидал такого удобства. UX
+                                    чистый, всё логично, и редактирование
+                                    записей проходит без проблем.
+                                </p>
+                                <span>— Иван Соколов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user8.svg" />
+                                <p>
+                                    MyBlog реально экономит время, вместо того
+                                    чтобы создавать лишние трудности. Рекомендую
+                                    всем, кто ведет блог. Настройка прошла
+                                    легко, и всё работало мгновенно. Отличный
+                                    опыт! Это полностью изменило мой процесс
+                                    управления блогом.
+                                </p>
+                                <span>— Елена Морозова</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/confirm_code.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const maxLength = 6;
+                const codeField = document.getElementById('confirm-code');
+
+                codeField.addEventListener('input', () => {
+
+                    if (/[^0-9]/g.test(codeField.value)) {
+                        alert(
+                            'Запрещены символы, кроме латиницы, цифр, точки и @!'
+                        );
+                        codeField.value = codeField.value.replace(
+                            /[^0-9]/g,
+                            ''
+                        );
+                        return;
+                    }
+                    // Ограничение длины
+                    if (codeField.value.length > maxLength) {
+                        alert('Превышено максимальное количество символов — 6');
+                        codeField.value = codeField.value.slice(0, maxLength);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

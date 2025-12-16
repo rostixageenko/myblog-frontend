@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MyBlog Главная</title>
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="icon" href="../logo/head-logo.svg" type="image/png">
+    </head>
+    <body>
+        <div class="header-wrapper">
+            <div class="header-shadow"></div>
+
+            <header class="top-header">
+                <!-- Лого -->
+                <div class="logo">
+                    <img
+                        src="./logo/red-logo.png"
+                        alt="MyBlog Logo"
+                        class="logo-img"
+                    />
+                </div>
+
+                <!-- Правая часть -->
+                <div class="header-right">
+                    <!-- Desktop -->
+                    <div class="header-actions">
+                        <a href="./html/login.html" class="login-link">Вход</a>
+                        <button
+                            class="primary-btn small"
+                            onclick="window.location.href='./html/register.html'"
+                        >
+                            Начать
+                        </button>
+                    </div>
+
+                    <!-- Burger -->
+                    <div class="burger" id="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Mobile menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="./html/login.html">Вход</a>
+                <button onclick="window.location.href='./html/register.html'">
+                    Начать бесплатно
+                </button>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div class="hero-wrapper">
+                <div class="h1-box">
+                    <div class="h1-label">H1 heading-style-h1</div>
+
+                    <h1>
+                        <span class="red-box">Простой инструмент</span>
+                        <span class="dark-text">для ведения личного блога</span>
+                    </h1>
+                </div>
+
+                <p class="subtitle">
+                    MyBlog объединяет все функции для публикации и управления
+                    контентом — от создания постов до их редактирования и
+                    удаления. Быстро, удобно, интуитивно.
+                </p>
+
+                <div class="hero-buttons">
+                    <button
+                        class="primary-btn"
+                        onclick="window.location.href='./html/register.html'"
+                    >
+                        Начать бесплатно
+                    </button>
+                </div>
+
+                <div class="trusted">
+                    <p>Нам доверяют:</p>
+                    <div class="logos">
+                        <span>Webflow</span>
+                        <span>Slack</span>
+                        <span>Finsweet</span>
+                        <span>Reddit</span>
+                        <span>Amazon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const burger = document.getElementById('burger');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Закрытие при клике вне меню
+            document.addEventListener('click', (e) => {
+                if (
+                    !burger.contains(e.target) &&
+                    !mobileMenu.contains(e.target)
+                ) {
+                    burger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        </script>
+    </body>
+</html>

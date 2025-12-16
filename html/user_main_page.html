@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Все блоги — MyBlog</title>
+        <link rel="stylesheet" href="../css/user_main_page.css" />
+        <link rel="icon" href="../logo/head-logo.svg" type="image/png" />
+    </head>
+
+    <body>
+        <header>
+            <div class="logo">
+                <img
+                    src="../logo/white-logo.png"
+                    alt="MyBlog Logo"
+                    class="logo-img"
+                />
+            </div>
+
+            <div class="naming">
+                <h2>
+                    Добро пожаловать <span id="firstName"></span>
+                    <span id="lastName"></span>
+                </h2>
+            </div>
+            <div>
+                <button id="admin-btn" class="admin-btn">Профиль</button>
+                <button id="logout-btn" class="logout-btn">Выйти</button>
+            </div>
+
+            <!-- Burger (mobile) -->
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-user">
+                <div class="mobile-name">
+                    <span id="firstNameMobile"></span>
+                    <span id="lastNameMobile"></span>
+                </div>
+            </div>
+
+            <button class="admin-btn mobile-admin">Профиль</button>
+            <button class="logout-btn mobile-logout">Выйти</button>
+        </div>
+
+        <div id="admin-modal" class="modal-overlay">
+            <div class="modal">
+                <span class="close-btn" id="close-modal">&times;</span>
+                <h3>Профиль</h3>
+                <div class="field">
+                    <label>Имя</label>
+                    <input
+                        type="text"
+                        id="admin-first-name"
+                        placeholder="Введите имя"
+                    />
+                </div>
+                <div class="field">
+                    <label>Фамилия</label>
+                    <input
+                        type="text"
+                        id="admin-last-name"
+                        placeholder="Введите фамилию"
+                    />
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        id="admin-email"
+                        placeholder="Введите email"
+                    />
+                    <span class="comment"
+                        >Рекомендуется указать email (без почты не возможно
+                        измеить пароль)
+                    </span>
+                </div>
+
+                <div class="field">
+                    <label>Телефон</label>
+                    <input
+                        type="tel"
+                        id="admin-phone"
+                        placeholder="+375********* или +7**********"
+                    />
+                </div>
+
+                <button id="save-admin" class="save-btn">Сохранить</button>
+                <button
+                    id="reset-password-admin"
+                    class="save-btn"
+                    style="margin-left: 10px"
+                >
+                    Сбросить пароль
+                </button>
+            </div>
+        </div>
+
+        <main>
+            <!-- 🔥 Левая колонка: список блогов авторов -->
+            <div class="blogs-list">
+                <h2>Блоги авторов</h2>
+                <div id="authorsContainer"></div>
+            </div>
+
+            <!-- 🔥 Правая колонка: посты выбранного автора -->
+            <div class="blog-container">
+                <div id="postsContainer"></div>
+            </div>
+        </main>
+
+        <script src="../js/user_script.js"></script>
+        <script src="../js/profile_modal.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const maxLength = 50;
+
+                const emailField = document.getElementById('admin-email');
+                const phoneField = document.getElementById('admin-phone');
+
+                // Все inputs и textarea, исключая телефон
+                const inputs = document.querySelectorAll('input');
+
+                inputs.forEach((field) => {
+                    field.addEventListener('input', () => {
+                        // Удаляем все русские буквы
+                        if (field === emailField || field === phoneField) {
+                            field.value = field.value.replace(
+                                /[А-Яа-яЁё]/g,
+                                ''
+                            );
+                        }
+
+                        // Если это поле email — фильтруем разрешённые символы
+                        if (field === emailField) {
+                            field.value = field.value.replace(
+                                /[^A-Za-z0-9@.]/g,
+                                ''
+                            );
+                        }
+
+                        // Если это поле пароль — разрешаем только латиницу и цифры
+                        if (field === phoneField) {
+                            field.value = field.value.replace(/[^0-9+]/g, '');
+                        }
+
+                        // Проверка длины
+                        if (field.value.length > maxLength) {
+                            alert(
+                                'Превышено максимальное количество символов — 50'
+                            );
+                            field.value = field.value.slice(0, maxLength);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

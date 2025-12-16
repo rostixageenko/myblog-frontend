@@ -1,0 +1,66 @@
+/* Левая панель */
+.card {
+    padding-bottom: 10px;
+}
+
+/* Разделитель */
+.divider {
+    margin: 15px 0;
+}
+
+/* Поля ввода */
+label {
+    display: block;
+}
+
+/* Имя и фамилия на одном уровне */
+.name-row {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group input {
+    width: 100%;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    /* gap: 6px; */
+    font-size: 14px;
+    color: #777;
+    text-decoration: none;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    color: #555;
+}
+
+.back-arrow {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.back-text {
+    font-weight: 500;
+}
+
+#register-password {
+    margin-bottom: 15px;
+}
+
+#register-blog-name {
+    margin-bottom: 15px;
+}
+
+#register-role {
+    margin-bottom: 15px;
+}

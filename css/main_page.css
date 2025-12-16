@@ -1,0 +1,458 @@
+* {
+    font-family: 'Jost';
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: #f8f9fa;
+}
+
+h1 {
+    margin: 0;
+    font-weight: 900;
+}
+
+h2 {
+    margin: 0 0 20px 0;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 170, 255);
+    font-weight: 600;
+}
+
+a:hover {
+    color: rgb(255, 88, 116);
+}
+
+button {
+    background-image: linear-gradient(
+        to right,
+        rgb(255, 0, 43),
+        rgb(255, 88, 116)
+    );
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(230, 0, 38),
+        rgb(226, 84, 108)
+    );
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fafafa;
+}
+
+textarea {
+    min-height: 40px;
+}
+
+/* ====================================================
+   HEADER
+   ==================================================== */
+header {
+    display: flex;
+    width: 100%;
+    min-height: 70px;
+    height: auto;
+    margin: 0;
+    justify-content: space-between;
+    padding: 0px 30px;
+    /* padding-bottom: 8px; */
+    align-items: center;
+    color: aliceblue;
+    font-size: 25px;
+
+    background-image: linear-gradient(
+        to right,
+        rgb(255, 0, 43),
+        rgb(255, 88, 116)
+    );
+}
+
+/* ====================================================
+   MAIN LAYOUT (BLOG PAGE)
+   ==================================================== */
+main {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+}
+
+/* ====================================================
+   FORM BLOCK (LEFT SIDEBAR)
+   ==================================================== */
+.block-form {
+    background: white;
+    padding: 30px 25px;
+    border-right: 2px solid #f0f0f0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.block-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #999999;
+}
+
+.block-form label {
+    font-weight: 600;
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* ====================================================
+   BLOG POSTS (RIGHT COLUMN)
+   ==================================================== */
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 15px 20px;
+    overflow-y: auto;
+    align-content: start;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    background: #fff;
+    color: rgb(87, 87, 87);
+
+    border: 1px solid rgb(232, 232, 232);
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    min-height: 220px;
+    max-height: 350px;
+
+    position: relative;
+}
+
+.card h5 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 900;
+    color: #333;
+}
+
+.card .body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.card .body p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.card .body::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+
+.card-footer {
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.card-footer a {
+    margin-right: 10%;
+}
+
+.card-footer a:last-child {
+    margin-right: 0;
+}
+
+.logout-btn {
+    /* margin-left: 20px; */
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 0px;
+    background: white;
+    color: rgb(255, 0, 43);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #ffe6ea;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 42px;
+    width: auto;
+}
+
+.naming {
+    display: flex;
+    gap: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    align-items: center;
+    padding: 0 25px;
+    margin: 0 20px;
+    max-width: 900px;
+
+    /* Обрезаем текст */
+    overflow: hidden;
+    white-space: nowrap;
+
+    position: relative;
+}
+
+/* Блюр-эффект справа */
+.naming::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px; /* ширина градиента */
+    height: 100%;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to right,
+        rgba(255, 88, 116, 0.042) 0%,
+        rgba(255, 88, 116, 0.484) 50%,
+        rgb(255, 88, 116) 100%
+    );
+}
+
+.naming h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.admin-btn {
+    margin-right: 20px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 0px;
+    background: white;
+    color: rgb(255, 0, 43);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-btn:hover {
+    background: #ffe6ea;
+}
+
+.header-actions{
+    min-width: 218px;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999999999; /* ✅ ПОВЕРХ ВСЕГО */
+    pointer-events: all; /* ✅ ПЕРЕХВАТ ВСЕХ КЛИКОВ */
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    width: 320px;
+    border-radius: 12px;
+    position: relative;
+
+    z-index: 1000000000;
+}
+
+.card {
+    position: relative;
+    z-index: 1 !important;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.save-btn {
+    margin-top: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.comment {
+    display: flex;
+    font-size: 14px;
+    color: #787878;
+    justify-self: center;
+}
+
+/* ==============================
+   BURGER
+   ============================== */
+
+.burger {
+    display: none;
+    width: 28px;
+    height: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1000001;
+}
+
+.burger span {
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* Бургер анимация */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* ==============================
+   MOBILE MENU
+   ============================== */
+
+.mobile-menu {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    width: calc(100% - 30px);
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    z-index: 1000000;
+
+    display: none; /* ✅ СКРЫТО */
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-menu.active {
+    display: flex; /* ✅ ТОЛЬКО ПО ACTIVE */
+}
+
+/* ==============================
+   MOBILE ADAPTIVE
+   ============================== */
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .naming {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    header button {
+        display: none;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .block-form {
+        width: 100%;
+        border-right: none;
+        box-shadow: none;
+        border-bottom: 2px solid #eee;
+    }
+
+    .header-actions{
+    min-width: 0px;
+}
+
+    .blog-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .card {
+        max-height: none;
+    }
+
+    .admin-btn {
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Регистрация MyBlog</title>
+        <link rel="stylesheet" href="../css/register.css" />
+        <link rel="stylesheet" href="../css/style_sign_register.css" />
+        <link rel="icon" href="../logo/head-logo.svg" type="image/png" />
+    </head>
+
+    <body>
+        <div class="layout">
+            <!-- Левая панель -->
+            <div class="card">
+                <a href="../index.html" class="logo-block">
+                    <img
+                        src="../logo/red-logo.png"
+                        class="logo-img"
+                        alt="MyBlog Logo"
+                    />
+                </a>
+
+                <h1 class="title">Создание аккаунта</h1>
+                <div id="phone-toggle-btn" class="phone-btn">
+                    <div class="phone-profile">
+                        <div class="phone-avatar">
+                            <img
+                                src="../icon/icon-telephone.svg"
+                                alt="иконка-телефона"
+                                id="phone-icon"
+                                class="icon"
+                            />
+                        </div>
+                        <div class="phone-label">Войти по номеру телефона</div>
+                    </div>
+                </div>
+
+                <form id="register-form" class="form">
+                    <div class="divider"><span>или</span></div>
+
+                    <div id="message" class="msg-box"></div>
+
+                    <div class="name-row">
+                        <div class="input-group">
+                            <label>Имя</label>
+                            <input
+                                type="text"
+                                id="register-first-name"
+                                class="input"
+                                required
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label>Фамилия</label>
+                            <input
+                                type="text"
+                                id="register-last-name"
+                                class="input"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div id="email-register-block" class="email-block">
+                        <label>Адрес электронной почты</label>
+                        <input
+                            type="email"
+                            id="register-email"
+                            class="email-input"
+                        />
+                    </div>
+                    <div
+                        id="phone-register-block"
+                        class="phone-block"
+                        style="display: none"
+                    >
+                        <label for="register-phone">Номер телефона</label>
+
+                        <div class="phone-input-row">
+                            <!-- Кастомный селектор -->
+                            <div class="country-picker" id="country-picker">
+                                <div
+                                    class="country-selected"
+                                    id="country-selected"
+                                >
+                                    <img
+                                        src="../icon/belarus_flag.svg"
+                                        id="selected-flag"
+                                        class="flag"
+                                    />
+                                    <span id="selected-code">+375</span>
+                                </div>
+
+                                <div
+                                    class="country-dropdown"
+                                    id="country-dropdown"
+                                >
+                                    <div
+                                        class="country-item"
+                                        data-code="+375"
+                                        data-flag="../icon/belarus_flag.svg"
+                                    >
+                                        <img
+                                            src="../icon/belarus_flag.svg"
+                                            class="flag"
+                                        />
+                                        <span>+375</span>
+                                    </div>
+                                    <div
+                                        class="country-item"
+                                        data-code="+7"
+                                        data-flag="../icon/russian_flag.svg"
+                                    >
+                                        <img
+                                            src="../icon/russian_flag.svg"
+                                            class="flag"
+                                        />
+                                        <span>+7</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Поле ввода -->
+                            <input
+                                type="tel"
+                                id="register-phone"
+                                class="input phone-input"
+                                placeholder="+375 XX XXX XX XX"
+                            />
+                        </div>
+                    </div>
+
+                    <label>Пароль</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="register-password"
+                            class="input"
+                            required
+                        />
+
+                        <img
+                            src="../icon/eye-closed.png"
+                            id="toggle-password"
+                            class="eye-icon"
+                            alt="Показать пароль"
+                        />
+                    </div>
+
+                    <label for="register-role">Регистрируетесь как:</label>
+                    <select
+                        id="register-role"
+                        name="role"
+                        class="input"
+                        required
+                    >
+                        <option value="user" selected>Пользователь</option>
+                        <option value="author">Автор</option>
+                    </select>
+
+                    <div
+                        id="blog-name-group"
+                        class="input-group"
+                        style="display: none; margin-top: 15px"
+                    >
+                        <label>Название блога</label>
+                        <input
+                            type="text"
+                            id="register-blog-name"
+                            class="input"
+                        />
+                    </div>
+                    <div
+                        class="g-recaptcha"
+                        data-sitekey="6LdntScsAAAAABSKVk0FfPIYNii3ZdyQbVQffXIb"
+                    ></div>
+
+                    <button type="submit" class="btn">
+                        Зарегистрироваться
+                    </button>
+                </form>
+
+                <p class="footer-text">
+                    Уже есть аккаунт? <a href="login.html">Войти</a>
+                </p>
+            </div>
+            <!-- Правая часть (фон) -->
+            <div class="side-gradient">
+                <div class="reviews-center">
+                    <div class="reviews-list">
+                        <!-- Оригинальные карточки -->
+                        <div class="reviews-masonry">
+                            <div class="review-card">
+                                <img src="../avatar/user1.svg" />
+                                <p>
+                                    Настройка блога прошла легко. Всё работало
+                                    сразу без каких-либо ошибок и проблем.
+                                </p>
+                                <span>— Алексей Иванов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user3.svg" />
+                                <p>
+                                    Как блогер с 10 летним опытом, я использовал
+                                    множество систем. MyBlog входит в мою тройку
+                                    лучших. Внимание к деталям впечатляет.
+                                    Процесс добавления и редактирования записей
+                                    просто заслуживает похвалы. Кроме того,
+                                    функционал платформы позволяет создавать
+                                    сложные записи без лишнего кода. Поддержка
+                                    отзывчивая и всегда помогает.
+                                </p>
+                                <span>— Марина Смирнова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user4.svg" />
+                                <p>
+                                    MyBlog меняет правила игры. Для любого
+                                    блогера — это недостающий инструмент. Всё
+                                    невероятно просто в использовании.
+                                </p>
+                                <span>— Дмитрий Кузнецов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user2.svg" />
+                                <p>
+                                    Я не знаю, как бы я вел блог без MyBlog. Всё
+                                    необходимое здесь есть, и платформа
+                                    сэкономила мне недели работы.
+                                </p>
+                                <span>— Ольга Петрова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user5.svg" />
+                                <p>
+                                    Вы пробовали MyBlog? Это отличное решение
+                                    для ведения блога. Структура простая, гибкая
+                                    и очень функциональная.
+                                </p>
+                                <span>— Сергей Лебедев</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user6.svg" />
+                                <p>
+                                    Спасибо за поддержку! MyBlog изменил способ
+                                    ведения блога. Большое уважение команде — вы
+                                    делаете потрясающую работу.
+                                </p>
+                                <span>— Наталья Федорова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user7.svg" />
+                                <p>
+                                    Я не ожидал такого удобства. UX чистый, всё
+                                    логично, и редактирование записей проходит
+                                    без проблем. Интерфейс интуитивно понятный,
+                                    а все функции работают быстро. Это реально
+                                    упрощает ведение блога и экономит много
+                                    времени.
+                                </p>
+
+                                <span>— Иван Соколов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user8.svg" />
+                                <p>
+                                    MyBlog реально экономит время, вместо того
+                                    чтобы создавать лишние трудности. Рекомендую
+                                    всем. Настройка прошла легко, и всё работало
+                                    мгновенно. Отличный опыт! Это полностью
+                                    изменило мой процесс управления блогом.
+                                </p>
+                                <span>— Елена Морозова</span>
+                            </div>
+                        </div>
+
+                        <!-- Дублируем для бесконечной прокрутки -->
+                        <div class="reviews-masonry">
+                            <div class="review-card">
+                                <img src="../avatar/user1.svg" />
+                                <p>
+                                    Настройка блога прошла легко. Всё работало
+                                    сразу без каких-либо ошибок и проблем.
+                                </p>
+                                <span>— Алексей Иванов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user3.svg" />
+                                <p>
+                                    Как блогер с 10 летним опытом, я использовал
+                                    множество систем. MyBlog входит в мою тройку
+                                    лучших. Внимание к деталям впечатляет.
+                                    Процесс добавления и редактирования записей
+                                    просто заслуживает похвалы. Кроме того,
+                                    функционал платформы позволяет создавать
+                                    сложные записи без лишнего кода. Поддержка
+                                    отзывчивая и всегда помогает.
+                                </p>
+                                <span>— Марина Смирнова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user4.svg" />
+                                <p>
+                                    MyBlog меняет правила игры. Для любого
+                                    блогера — это недостающий инструмент. Всё
+                                    невероятно просто в использовании.
+                                </p>
+                                <span>— Дмитрий Кузнецов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user2.svg" />
+                                <p>
+                                    Я не знаю, как бы я вел блог без MyBlog. Всё
+                                    необходимое здесь есть, и платформа
+                                    сэкономила мне недели работы.
+                                </p>
+                                <span>— Ольга Петрова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user5.svg" />
+                                <p>
+                                    Вы пробовали MyBlog? Это отличное решение
+                                    для ведения блога. Структура простая, гибкая
+                                    и очень функциональная.
+                                </p>
+                                <span>— Сергей Лебедев</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user6.svg" />
+                                <p>
+                                    Спасибо за поддержку! MyBlog изменил способ
+                                    ведения блога. Большое уважение команде — вы
+                                    делаете потрясающую работу.
+                                </p>
+                                <span>— Наталья Федорова</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user7.svg" />
+                                <p>
+                                    Честно, я не ожидал такого удобства. UX
+                                    чистый, всё логично, и редактирование
+                                    записей проходит без проблем.
+                                </p>
+                                <span>— Иван Соколов</span>
+                            </div>
+                            <div class="review-card">
+                                <img src="../avatar/user8.svg" />
+                                <p>
+                                    MyBlog реально экономит время, вместо того
+                                    чтобы создавать лишние трудности. Рекомендую
+                                    всем, кто ведет блог. Настройка прошла
+                                    легко, и всё работало мгновенно. Отличный
+                                    опыт! Это полностью изменило мой процесс
+                                    управления блогом.
+                                </p>
+                                <span>— Елена Морозова</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/auth.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const roleSelect = document.getElementById('register-role');
+                const blogField = document.getElementById('blog-name-group');
+
+                roleSelect.addEventListener('change', () => {
+                    if (roleSelect.value === 'author') {
+                        blogField.style.display = 'block';
+                        document
+                            .getElementById('register-blog-name')
+                            .setAttribute('required', 'required');
+                    } else {
+                        blogField.style.display = 'none';
+                        document
+                            .getElementById('register-blog-name')
+                            .removeAttribute('required');
+                    }
+                });
+            });
+        </script>
+        <script src="../js/vvod_nomer.js"></script>
+        <!-- Подключение Google reCAPTCHA -->
+        <script
+            src="https://www.google.com/recaptcha/api.js"
+            async
+            defer
+        ></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const maxLength = 50;
+
+                const emailField = document.getElementById('register-email');
+                const passwordField =
+                    document.getElementById('register-password');
+
+                const inputs = document.querySelectorAll(
+                    "input:not(#register-phone):not([type='tel'])"
+                );
+
+                inputs.forEach((field) => {
+                    field.addEventListener('input', () => {
+                        // Удаляем любые русские буквы
+                        if (field === emailField || field === passwordField) {
+                            if (/[А-Яа-яЁё]/g.test(field.value)) {
+                                alert('Русские буквы запрещены!');
+                                field.value = field.value.replace(
+                                    /[А-Яа-яЁё]/g,
+                                    ''
+                                );
+                                return;
+                            }
+                        }
+
+                        // Email — только латиница, цифры, @ и .
+                        if (field === emailField) {
+                            if (/[^A-Za-z0-9@.]/g.test(field.value)) {
+                                alert(
+                                    'Запрещены символы, кроме латиницы, цифр, точки и @!'
+                                );
+                                field.value = field.value.replace(
+                                    /[^A-Za-z0-9@.]/g,
+                                    ''
+                                );
+                                return;
+                            }
+                        }
+
+                        // Пароль — только латиница и цифры
+                        if (field === passwordField) {
+                            if (/[^A-Za-z0-9]/g.test(field.value)) {
+                                alert(
+                                    'Запрещены символы, кроме латиницы и цифр!'
+                                );
+                                field.value = field.value.replace(
+                                    /[^A-Za-z0-9]/g,
+                                    ''
+                                );
+                                return;
+                            }
+                        }
+
+                        // Ограничение длины
+                        if (field.value.length > maxLength) {
+                            alert(
+                                'Превышено максимальное количество символов — 50'
+                            );
+                            field.value = field.value.slice(0, maxLength);
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const passwordInput =
+                    document.getElementById('register-password');
+                const toggleIcon = document.getElementById('toggle-password');
+
+                if (!passwordInput || !toggleIcon) return;
+
+                toggleIcon.addEventListener('click', () => {
+                    const isHidden = passwordInput.type === 'password';
+
+                    passwordInput.type = isHidden ? 'text' : 'password';
+                    toggleIcon.src = isHidden
+                        ? '../icon/eye-open.svg'
+                        : '../icon/eye-closed.png';
+                });
+            });
+        </script>
+    </body>
+</html>

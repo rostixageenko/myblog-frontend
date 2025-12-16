@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MyBlog Dashboard</title>
+        <link rel="stylesheet" href="../css/main_page.css" />
+        <link rel="icon" href="../logo/head-logo.svg" type="image/png" />
+    </head>
+    <body>
+        <!-- ================= HEADER ================= -->
+        <header>
+            <div class="logo">
+                <img
+                    src="../logo/white-logo.png"
+                    alt="MyBlog Logo"
+                    class="logo-img"
+                />
+            </div>
+
+            <div class="naming">
+                <h2>
+                    Привет
+                    <span id="firstName"></span>
+                    <span id="lastName"></span>, блог "<span
+                        id="blogName"
+                    ></span
+                    >"
+                </h2>
+            </div>
+
+            <div class="header-actions">
+                <button id="admin-btn" class="admin-btn">Профиль</button>
+                <button id="logout-btn" class="logout-btn">Выйти</button>
+            </div>
+
+            <!-- Burger (mobile) -->
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </header>
+
+        <!-- ================= MOBILE MENU ================= -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-user">
+                <div class="mobile-name">
+                    <span id="firstNameMobile"></span>
+                    <span id="lastNameMobile"></span>
+                </div>
+                <div class="mobile-blog">
+                    Блог: <span id="blogNameMobile"></span>
+                </div>
+            </div>
+
+            <button class="admin-btn mobile-admin">Профиль</button>
+            <button class="logout-btn mobile-logout">Выйти</button>
+        </div>
+
+        <!-- ================= PROFILE MODAL ================= -->
+        <div id="admin-modal" class="modal-overlay">
+            <div class="modal">
+                <span class="close-btn" id="close-modal">&times;</span>
+                <h3>Профиль</h3>
+
+                <div class="field">
+                    <label>Имя</label>
+                    <input type="text" id="admin-first-name" />
+                </div>
+
+                <div class="field">
+                    <label>Фамилия</label>
+                    <input type="text" id="admin-last-name" />
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" id="admin-email" />
+                    <span class="comment"
+                        >Рекомендуется указать email (без почты не возможно
+                        измеить пароль)
+                    </span>
+                </div>
+
+                <div class="field">
+                    <label>Телефон</label>
+                    <input type="tel" id="admin-phone" />
+                </div>
+
+                <button id="save-admin" class="save-btn">Сохранить</button>
+                <button id="reset-password-admin" class="save-btn">
+                    Изменить пароль
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= MAIN ================= -->
+        <main>
+            <!-- LEFT / TOP (FORM) -->
+            <div class="block-form">
+                <h2>Добавление поста</h2>
+
+                <form>
+                    <label for="title">Название поста</label>
+                    <input id="title" type="text" />
+
+                    <label for="body">Содержимое поста</label>
+                    <textarea id="body"></textarea>
+
+                    <button type="button" onclick="addPost()">Добавить</button>
+                </form>
+
+                <h2>Изменение поста</h2>
+
+                <form>
+                    <label for="title-edit">Новое название поста</label>
+                    <input id="title-edit" type="text" />
+
+                    <label for="body-edit">Новое содержимое поста</label>
+                    <textarea id="body-edit"></textarea>
+
+                    <button type="button" onclick="updatePost()">
+                        Изменить
+                    </button>
+                </form>
+            </div>
+
+            <!-- RIGHT / BOTTOM (BLOG POSTS) -->
+            <div class="blog-container">
+                <!-- Карточки постов генерируются JS -->
+            </div>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const maxLength = 50;
+
+                const inputs = document.querySelectorAll('input');
+
+                inputs.forEach((field) => {
+                    field.addEventListener('input', () => {
+                        // Удаляем все русские буквы
+                        if (field === emailField || field === phoneField) {
+                            field.value = field.value.replace(
+                                /[А-Яа-яЁё]/g,
+                                ''
+                            );
+                        }
+                        // Если это поле email — фильтруем разрешённые символы
+                        if (field === emailField) {
+                            field.value = field.value.replace(
+                                /[^A-Za-z0-9@.]/g,
+                                ''
+                            );
+                        }
+
+                        // Если это поле пароль — разрешаем только латиницу и цифры
+                        if (field === passwordField) {
+                            field.value = field.value.replace(
+                                /[^A-Za-z0-9]/g,
+                                ''
+                            );
+                        }
+
+                        // Проверка длины
+                        if (field.value.length > maxLength) {
+                            alert(
+                                'Превышено максимальное количество символов — 50'
+                            );
+                            field.value = field.value.slice(0, maxLength);
+                        }
+                    });
+                });
+            });
+
+            const burger = document.getElementById('burger');
+            const menu = document.getElementById('mobileMenu');
+
+            // Открытие / закрытие по бургеру
+            burger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+                burger.classList.toggle('active');
+            });
+
+            // Закрытие при клике вне меню
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !burger.contains(e.target)) {
+                    menu.classList.remove('active');
+                    burger.classList.remove('active');
+                }
+            });
+
+            // Закрытие при клике на кнопки внутри меню
+            menu.querySelectorAll('button').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    menu.classList.remove('active');
+                    burger.classList.remove('active');
+                });
+            });
+
+            // Закрытие при ресайзе на десктоп
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    menu.classList.remove('active');
+                    burger.classList.remove('active');
+                }
+            });
+        </script>
+        <script src="../js/script.js"></script>
+        <script src="../js/profile_modal.js"></script>
+    </body>
+</html>

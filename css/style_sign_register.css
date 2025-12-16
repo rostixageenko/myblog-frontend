@@ -1,0 +1,526 @@
+:root {
+    --primary: rgb(255, 0, 43);
+    --primary-light: rgb(255, 88, 116);
+    --primary-bg: rgba(255, 0, 43, 0.08);
+    --border: rgba(255, 0, 43, 0.35);
+}
+
+
+* {
+    font-family: 'Jost';
+    box-sizing: border-box;
+}
+
+body {
+    margin: 15px;
+    background: #f5f6fa;
+    border-radius: 10px;
+    border: solid 1px rgba(224, 193, 193, 0.825);
+}
+
+.layout {
+    display: flex;
+    height: 95vh;
+}
+
+/* Левая панель */
+.card {
+    width: 380px;
+    padding: 40px;
+    padding-bottom: 0px;
+    gap: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.card::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 8px;
+}
+
+.card::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 43, 0.5);
+    border-radius: 8px;
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 43, 0.8);
+}
+
+/* ЛОГО */
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 35px;
+}
+
+/* Заголовок */
+.title {
+    font-size: 24px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    color: var(--primary);
+}
+
+/* Google-кнопка */
+.phone-btn {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 8.5px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.phone-profile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+
+.phone-avatar {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.phone-label {
+    display: flex;
+    font-size: 16px;
+   /* justify-self: center; */
+   margin-left:auto;
+   margin-right:auto;
+    align-items: center;
+}
+
+.phone-btn:hover {
+       border-color: var(--primary);
+    background: var(--primary-bg);
+}
+
+/* Разделитель */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #999;
+}
+
+.divider span {
+    padding: 0 10px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    margin-top: 10px;
+}
+
+.email-input,
+.input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 15px;
+    outline: none;
+}
+
+.email-input:focus,
+.input:focus {
+    border-color: var(--primary);
+    background: var(--primary-bg);
+}
+
+/* Password wrapper */
+.password-wrapper {
+    position: relative;
+}
+
+/* Pass label + forgot */
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 15px; */
+}
+
+.forgot-link {
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.btn {
+    margin-top: 30px;
+    padding: 14px;
+    width: 100%;
+    border: none;
+    background-image: linear-gradient(
+        to right,
+        rgb(255, 0, 43),
+        rgb(255, 88, 116)
+    );
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-image: linear-gradient(
+        to right,
+        rgb(230, 0, 38),
+        rgb(226, 84, 108)
+    );
+}
+
+/* Текст под формой */
+.footer-text {
+    text-align: center;
+    color: #444;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.footer-text a {
+    color: rgb(226, 84, 108);
+}
+
+/* Контейнер с градиентом */
+.side-gradient {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: radial-gradient(
+        circle at bottom right,
+        rgb(248, 148, 164),
+        rgb(251, 189, 199),
+        rgb(255, 254, 247)
+    );
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    box-shadow: inset 15px 5px 40px rgba(0, 0, 0, 0.09);
+}
+
+/* Центрирование блока карточек */
+.reviews-center {
+    width: 610px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Анимация бесконечной прокрутки */
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    animation: reviewsScroll 45s linear infinite;
+}
+
+/* Keyframes анимации */
+@keyframes reviewsScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+/* Сетка карточек */
+.reviews-masonry {
+    column-count: 2;
+    column-gap: 10px;
+    width: 100%;
+    margin: auto;
+}
+
+/* Карточки */
+.review-card {
+    background: white;
+    padding: 20px 22px;
+    border-radius: 16px;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.08);
+
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+}
+
+.review-card img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-card p {
+    margin: 0px;
+    color: #2f2f2f;
+}
+
+.review-card span {
+    opacity: 0.6;
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+}
+
+.msg-box {
+    display: none;
+    padding: 12px 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 1s ease-in-out;
+    opacity: 0;
+}
+
+.msg-box.show {
+    display: block;
+    opacity: 1;
+}
+
+.msg-box.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.msg-box.error {
+    background-color: #f8d7da;
+    color: #5d1e1e;
+    border: 1px solid #f5c6cb;
+}
+
+.country-picker {
+    position: relative;
+    width: 80px;
+    min-width: 80px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.country-selected {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.flag {
+    width: 18px;
+    height: 12px;
+    object-fit: contain;
+}
+
+.country-dropdown {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: none;
+    z-index: 10;
+}
+
+.country-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    cursor: pointer;
+}
+
+.country-item:hover {
+    background: #f2f2f2;
+}
+
+.phone-input-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#login-phone,
+#register-phone {
+    caret-color: transparent; /* скрывает курсор */
+}
+
+.icon {
+    width: 10px;
+    height: 10px;
+}
+
+#signin_phone{
+    justify-self: center;
+}
+
+
+#login-password {
+    margin-bottom: 15px;
+}
+
+.eye-icon {
+    width: 25px;
+    position: absolute;
+    right: 12px;
+    top: 35%;
+    transform: translateY(-50%);
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.eye-icon:hover {
+    opacity: 1;
+}
+
+
+.github-btn {
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    padding: 8.5px 14px;
+    width: 100%;
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #3c4043;
+    /* font-size: 14px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif; */
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-btn:hover {
+    background-color: #f7f8f8;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.github-btn:active {
+    background-color: #f1f3f4;
+}
+
+.github-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.github-btn span{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ===================== */
+/* ADAPTIVE: <= 1046px   */
+/* ===================== */
+
+@media (max-width: 1046px) {
+
+
+    /* Правая часть */
+    .side-gradient {
+        width: 100%;
+        min-height: 500px;
+    }
+
+    /* Центр отзывов */
+    .reviews-center {
+        width: 100%;
+        /* padding: 20px; */
+    }
+
+    /* === ВАЖНО === */
+    /* Masonry → 1 колонка */
+    .reviews-masonry {
+        column-count: 1;
+        column-gap: 0;
+                width: 240px;
+    }
+
+    /* Карточки отзывов */
+    .review-card {
+        margin-bottom: 16px;
+    }
+}
+
+/* ===================== */
+/* ADAPTIVE: <= 677px    */
+/* ===================== */
+
+@media (max-width: 677px) {
+
+    /* Убираем правую часть */
+    .side-gradient {
+        display: none;
+    }
+
+    /* Layout — центрируем контент */
+    .layout {
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Левая карточка — центр экрана */
+    .card {
+        width: 100%;          /* ФИКСИРОВАННАЯ ширина */
+        height: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+    }
+
+    /* Убираем лишние отступы body */
+    body {
+        margin: 8px;
+    }
+}

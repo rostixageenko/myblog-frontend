@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Блог — MyBlog</title>
+        <link rel="stylesheet" href="../css/user_main_page.css" />
+        <link rel="icon" href="../logo/head-logo.svg" type="image/png">
+    </head>
+
+    <body>
+        <header>
+            <div class="logo">
+                <img
+                    src="../logo/white-logo.png"
+                    alt="MyBlog Logo"
+                    class="logo-img"
+                />
+            </div>
+            <button id="logout-btn" class="logout-btn">Выйти</button>
+        </header>
+
+        <section class="blog-list">
+            <h2 id="name-blog"></h2>
+            <div id="text-blog"></div>
+            <a
+                id="nazad-k-postam"
+                class="card-footer"
+                href="javascript:void(0)"
+            >
+                Назад к постам
+            </a>
+        </section>
+
+        <script src="../js/blog_script.js"></script>
+    </body>
+</html>

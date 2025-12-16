@@ -1,0 +1,44 @@
+/* Phone button */
+.phone-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.phone-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.phone-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.phone-label {
+    font-size: 14px;
+}
+
+.reset-title {
+    font-size: 24px;
+    margin-top: 15px;
+    color: var(--primary);
+}
+
+.reset-box {
+    margin-top: auto;
+    margin-bottom: auto;
+}
