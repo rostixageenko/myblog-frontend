@@ -73,7 +73,7 @@
                 <div class="field">
                     <label>Email</label>
                     <input
-                        type="email"
+                        type="text"
                         id="admin-email"
                         placeholder="Введите email"
                     />
@@ -98,16 +98,16 @@
                     class="save-btn"
                     style="margin-left: 10px"
                 >
-                    Сбросить пароль
+                    Изменение пароля
                 </button>
 
-                 <button
-            id="delete-account"
-            class="save-btn danger-btn"
-            type="button"
-        >
-            Удалить аккаунт
-        </button>
+                <button
+                    id="delete-account"
+                    class="save-btn danger-btn"
+                    type="button"
+                >
+                    Удалить аккаунт
+                </button>
             </div>
         </div>
 
@@ -132,34 +132,73 @@
 
                 const emailField = document.getElementById('admin-email');
                 const phoneField = document.getElementById('admin-phone');
+                const firstNameField =
+                    document.getElementById('admin-first-name');
+                const lastNameField =
+                    document.getElementById('admin-last-name');
 
-                // Все inputs и textarea, исключая телефон
                 const inputs = document.querySelectorAll('input');
 
                 inputs.forEach((field) => {
                     field.addEventListener('input', () => {
-                        // Удаляем все русские буквы
-                        if (field === emailField || field === phoneField) {
-                            field.value = field.value.replace(
-                                /[А-Яа-яЁё]/g,
-                                ''
-                            );
+                        if (
+                            field === firstNameField ||
+                            field === lastNameField
+                        ) {
+                            if (/[^A-Za-zА-Яа-яЁё]/g.test(field.value)) {
+                                alert('Допустимы только буквенные символы!');
+                                field.value = field.value.replace(
+                                    /[^A-Za-zА-Яа-яЁё]/g,
+                                    ''
+                                );
+                                return;
+                            }
                         }
 
-                        // Если это поле email — фильтруем разрешённые символы
                         if (field === emailField) {
-                            field.value = field.value.replace(
-                                /[^A-Za-z0-9@.]/g,
-                                ''
-                            );
+                            if (/[А-Яа-яЁё]/g.test(field.value)) {
+                                alert('Русские буквы запрещены!');
+                                field.value = field.value.replace(
+                                    /[А-Яа-яЁё]/g,
+                                    ''
+                                );
+                                return;
+                            }
+
+                            if (/[^A-Za-z0-9@.]/g.test(field.value)) {
+                                alert(
+                                    'Запрещены символы, кроме латиницы, цифр, точки и @!'
+                                );
+                                field.value = field.value.replace(
+                                    /[^A-Za-z0-9@.]/g,
+                                    ''
+                                );
+                                return;
+                            }
                         }
 
-                        // Если это поле пароль — разрешаем только латиницу и цифры
                         if (field === phoneField) {
-                            field.value = field.value.replace(/[^0-9+]/g, '');
+                            if (/[^0-9+]/g.test(field.value)) {
+                                alert('Разрешены только цифры и символ "+"!');
+                                field.value = field.value.replace(
+                                    /[^0-9+]/g,
+                                    ''
+                                );
+                                return;
+                            }
+
+                            if (
+                                (field.value.match(/\+/g) || []).length > 1 ||
+                                field.value.indexOf('+') > 0
+                            ) {
+                                alert(
+                                    'Символ "+" может находиться только в начале номера!'
+                                );
+                                field.value = field.value.replace(/\+/g, '');
+                                return;
+                            }
                         }
 
-                        // Проверка длины
                         if (field.value.length > maxLength) {
                             alert(
                                 'Превышено максимальное количество символов — 50'

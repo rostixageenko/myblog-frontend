@@ -95,7 +95,7 @@ saveAdmin.addEventListener('click', async (e) => {
             modal.style.display = 'none';
             window.location.reload();
         } else {
-            alert('Ошибка обновления');
+            alert(data.error);
         }
     } catch (err) {
         alert(err);
@@ -153,8 +153,6 @@ document
         }
     });
 
-
-
 const deleteAccountBtn = document.getElementById('delete-account');
 
 if (deleteAccountBtn) {
@@ -184,17 +182,17 @@ if (deleteAccountBtn) {
 
             // const data = await res.json();
 
-          const raw = await res.text();
-          console.log('RAW RESPONSE LOGIN:', raw);
+            const raw = await res.text();
+            console.log('RAW RESPONSE LOGIN:', raw);
 
-          let data;
-          try {
-              data = JSON.parse(raw);
-          } catch (e) {
-              console.error('Сервер вернул НЕ JSON:', raw);
-              showMessage('message', 'Ошибка на сервере');
-              return;
-          }
+            let data;
+            try {
+                data = JSON.parse(raw);
+            } catch (e) {
+                console.error('Сервер вернул НЕ JSON:', raw);
+                showMessage('message', 'Ошибка на сервере');
+                return;
+            }
 
             if (!res.ok) {
                 alert(data.error || data.message || 'Ошибка удаления аккаунта');
@@ -215,7 +213,7 @@ if (deleteAccountBtn) {
             // Редирект на страницу логина / регистрации
             window.location.href = 'login.html';
         } catch (err) {
-             console.error(err);
+            console.error(err);
         } finally {
             setButtonDisabled(btn, false);
         }

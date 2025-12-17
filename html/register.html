@@ -398,6 +398,11 @@
                 const emailField = document.getElementById('register-email');
                 const passwordField =
                     document.getElementById('register-password');
+                const firstNameField = document.getElementById(
+                    'register-first-name'
+                );
+                const lastNameField =
+                    document.getElementById('register-last-name');
 
                 const inputs = document.querySelectorAll(
                     "input:not(#register-phone):not([type='tel'])"
@@ -405,8 +410,21 @@
 
                 inputs.forEach((field) => {
                     field.addEventListener('input', () => {
-                        // Удаляем любые русские буквы
-                        if (field === emailField || field === passwordField) {
+                        if (
+                            field === firstNameField ||
+                            field === lastNameField
+                        ) {
+                            if (/[^A-Za-zА-Яа-яЁё]/g.test(field.value)) {
+                                alert('Допустимы только буквенные символы!');
+                                field.value = field.value.replace(
+                                    /[^A-Za-zА-Яа-яЁё]/g,
+                                    ''
+                                );
+                                return;
+                            }
+                        }
+
+                        if (field === emailField) {
                             if (/[А-Яа-яЁё]/g.test(field.value)) {
                                 alert('Русские буквы запрещены!');
                                 field.value = field.value.replace(
@@ -415,10 +433,7 @@
                                 );
                                 return;
                             }
-                        }
 
-                        // Email — только латиница, цифры, @ и .
-                        if (field === emailField) {
                             if (/[^A-Za-z0-9@.]/g.test(field.value)) {
                                 alert(
                                     'Запрещены символы, кроме латиницы, цифр, точки и @!'
@@ -431,8 +446,16 @@
                             }
                         }
 
-                        // Пароль — только латиница и цифры
                         if (field === passwordField) {
+                            if (/[А-Яа-яЁё]/g.test(field.value)) {
+                                alert('Русские буквы запрещены!');
+                                field.value = field.value.replace(
+                                    /[А-Яа-яЁё]/g,
+                                    ''
+                                );
+                                return;
+                            }
+
                             if (/[^A-Za-z0-9]/g.test(field.value)) {
                                 alert(
                                     'Запрещены символы, кроме латиницы и цифр!'
@@ -445,7 +468,6 @@
                             }
                         }
 
-                        // Ограничение длины
                         if (field.value.length > maxLength) {
                             alert(
                                 'Превышено максимальное количество символов — 50'

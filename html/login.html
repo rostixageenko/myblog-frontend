@@ -382,14 +382,13 @@
                 const emailField = document.getElementById('login-email');
                 const passwordField = document.getElementById('login-password');
 
-                // Все inputs и textarea, исключая телефон
                 const inputs = document.querySelectorAll(
                     "input:not(#login-phone):not([type='tel']), textarea"
                 );
 
                 inputs.forEach((field) => {
                     field.addEventListener('input', () => {
-
+                        if (field === emailField) {
                             if (/[А-Яа-яЁё]/g.test(field.value)) {
                                 alert('Русские буквы запрещены!');
                                 field.value = field.value.replace(
@@ -399,8 +398,27 @@
                                 return;
                             }
 
+                            if (/[^A-Za-z0-9@.]/g.test(field.value)) {
+                                alert(
+                                    'Запрещены символы, кроме латиницы, цифр, точки и @!'
+                                );
+                                field.value = field.value.replace(
+                                    /[^A-Za-z0-9@.]/g,
+                                    ''
+                                );
+                                return;
+                            }
+                        }
 
                         if (field === passwordField) {
+                            if (/[А-Яа-яЁё]/g.test(field.value)) {
+                                alert('Русские буквы запрещены!');
+                                field.value = field.value.replace(
+                                    /[А-Яа-яЁё]/g,
+                                    ''
+                                );
+                                return;
+                            }
 
                             if (/[^A-Za-z0-9]/g.test(field.value)) {
                                 alert(
@@ -414,7 +432,6 @@
                             }
                         }
 
-                        // Проверка длины
                         if (field.value.length > maxLength) {
                             alert(
                                 'Превышено максимальное количество символов — 50'
