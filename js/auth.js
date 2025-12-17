@@ -191,7 +191,6 @@ if (loginForm) {
                 return;
             }
 
-            // ВАЖНО: ОБЪЯВЛЯЕМ res
             const res = await fetch(`${API_URL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -446,4 +445,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         showMessage('message', 'Ошибка соединения с сервером');
     }
 });
-

@@ -152,3 +152,72 @@ document
             setButtonDisabled(btn, false);
         }
     });
+
+
+
+const deleteAccountBtn = document.getElementById('delete-account');
+
+if (deleteAccountBtn) {
+    deleteAccountBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        user_id = localStorage.getItem('user_id');
+
+        console.log(user_id);
+        const confirmDelete = confirm(
+            'Вы уверены, что хотите удалить аккаунт?\nЭто действие необратимо.'
+        );
+
+        if (!confirmDelete) return;
+
+        const btn = e.currentTarget;
+        setButtonDisabled(btn, true);
+
+        try {
+            const res = await fetch(
+                'http://localhost:8080/signUp_page/delete-account',
+                {
+                    method: 'DELETE',
+                    body: JSON.stringify({ user_id }),
+                }
+            );
+
+            // const data = await res.json();
+
+          const raw = await res.text();
+          console.log('RAW RESPONSE LOGIN:', raw);
+
+          let data;
+          try {
+              data = JSON.parse(raw);
+          } catch (e) {
+              console.error('Сервер вернул НЕ JSON:', raw);
+              showMessage('message', 'Ошибка на сервере');
+              return;
+          }
+
+            if (!res.ok) {
+                alert(data.error || data.message || 'Ошибка удаления аккаунта');
+                return;
+            }
+
+            // Полная очистка данных пользователя
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('email');
+            localStorage.removeItem('phone');
+            localStorage.removeItem('firstname');
+            localStorage.removeItem('lastname');
+            localStorage.removeItem('role');
+
+            alert('Аккаунт успешно удалён');
+
+            // Редирект на страницу логина / регистрации
+            window.location.href = 'login.html';
+        } catch (err) {
+             console.error(err);
+        } finally {
+            setButtonDisabled(btn, false);
+        }
+    });
+}
