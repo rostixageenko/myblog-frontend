@@ -1,8 +1,5 @@
 const API_URL = 'http://localhost:8080/signUp_page';
 
-// ===================================================================
-// ФУНКЦИЯ ОТКЛЮЧЕНИЯ КНОПКИ
-// ===================================================================
 function setButtonDisabled(button, disabled = true) {
     if (!button) return;
 
@@ -11,7 +8,6 @@ function setButtonDisabled(button, disabled = true) {
     button.style.pointerEvents = disabled ? 'none' : 'auto';
 }
 
-// Функция для вывода сообщений
 function showMessage(elementId, message, type = 'error') {
     const el = document.getElementById(elementId);
     if (!el) return;
@@ -22,7 +18,7 @@ function showMessage(elementId, message, type = 'error') {
 }
 
 // ======================================
-// ПОДТВЕРЖДЕНИЕ (confirm code)
+// ПОДТВЕРЖДЕНИЕ
 // ======================================
 const confirmForm = document.getElementById('reset-form');
 
@@ -32,14 +28,12 @@ if (confirmForm) {
 
         const code = document.getElementById('confirm-code').value.trim();
 
-        // Проверка: код обязательно 6 цифр
         if (!/^\d{6}$/.test(code)) {
             showMessage('confirm-message', 'Код должен состоять из 6 цифр');
             return;
         }
 
-        // Определяем откуда пришёл пользователь
-        const referrer = localStorage.getItem('last_page'); // URL предыдущей страницы
+        const referrer = localStorage.getItem('last_page');
         let endpoint = '';
         let body = {};
 
@@ -51,10 +45,8 @@ if (confirmForm) {
         }
 
         if (referrer.includes('register')) {
-            // Пользователь пришёл с регистрации
             endpoint = '/confirm-registration';
         } else if (referrer.includes('login')) {
-            // Пользователь пришёл с login
             endpoint = '/confirm-login';
         } else {
             showMessage(
@@ -143,7 +135,6 @@ if (confirmForm) {
             console.error(err);
             showMessage('confirm-message', 'Ошибка соединения с сервером');
         } finally {
-            // Кнопка всегда возвращается
             setButtonDisabled(submitBtn, false);
         }
     });

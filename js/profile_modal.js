@@ -33,7 +33,7 @@ if (adminBtn) {
 
 adminBtnsMobile.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        e.stopPropagation(); // ⬅ тоже важно
+        e.stopPropagation();
         openProfile();
     });
 });
@@ -105,7 +105,7 @@ saveAdmin.addEventListener('click', async (e) => {
 });
 
 // ================================
-// сброс пароля в профиле
+// СБРОС ПАРОЛЯ В ПРОФИЛЕ
 // ================================
 
 document
@@ -153,6 +153,10 @@ document
         }
     });
 
+// ===================================================================
+// УДАЛЕНИЕ АККАУНТА
+// ===================================================================
+
 const deleteAccountBtn = document.getElementById('delete-account');
 
 if (deleteAccountBtn) {
@@ -180,8 +184,6 @@ if (deleteAccountBtn) {
                 }
             );
 
-            // const data = await res.json();
-
             const raw = await res.text();
             console.log('RAW RESPONSE LOGIN:', raw);
 
@@ -199,7 +201,6 @@ if (deleteAccountBtn) {
                 return;
             }
 
-            // Полная очистка данных пользователя
             localStorage.removeItem('access_token');
             localStorage.removeItem('user_id');
             localStorage.removeItem('email');
@@ -210,7 +211,6 @@ if (deleteAccountBtn) {
 
             alert('Аккаунт успешно удалён');
 
-            // Редирект на страницу логина / регистрации
             window.location.href = 'login.html';
         } catch (err) {
             console.error(err);

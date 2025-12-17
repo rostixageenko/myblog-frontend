@@ -1,19 +1,16 @@
-/* Левая панель */
+
 .card {
     padding-bottom: 10px;
 }
 
-/* Разделитель */
 .divider {
     margin: 15px 0;
 }
 
-/* Поля ввода */
 label {
     display: block;
 }
 
-/* Имя и фамилия на одном уровне */
 .name-row {
     display: flex;
     gap: 10px;

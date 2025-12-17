@@ -4,7 +4,6 @@ if (!localStorage.getItem('token')) {
 
 const token = localStorage.getItem('token');
 
-// ===== Универсальный запрос =====
 async function apiRequest(url) {
     const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -17,6 +16,10 @@ async function apiRequest(url) {
     }
     return res.json();
 }
+
+// ===================================================================
+// ЗАГРУЗКА БЛОГОВ
+// ===================================================================
 
 async function loadBlog() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -38,7 +41,6 @@ document.getElementById('nazad-k-postam').addEventListener('click', () => {
     } else if (role === 'user') {
         window.location.href = 'user_main_page.html';
     } else {
-        // если роль не определена — отправляем на логин
         window.location.href = 'login.html';
     }
 });

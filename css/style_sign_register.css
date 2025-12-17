@@ -5,7 +5,6 @@
     --border: rgba(255, 0, 43, 0.35);
 }
 
-
 * {
     font-family: 'Jost';
     box-sizing: border-box;
@@ -23,7 +22,6 @@ body {
     height: 95vh;
 }
 
-/* Левая панель */
 .card {
     width: 380px;
     padding: 40px;
@@ -56,7 +54,6 @@ body {
     background: rgba(255, 0, 43, 0.8);
 }
 
-/* ЛОГО */
 .logo-block {
     display: flex;
     align-items: center;
@@ -67,7 +64,6 @@ body {
     height: 35px;
 }
 
-/* Заголовок */
 .title {
     font-size: 24px;
     margin-top: 15px;
@@ -75,10 +71,8 @@ body {
     color: var(--primary);
 }
 
-/* Google-кнопка */
 .phone-btn {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     border: 1px solid rgb(221, 221, 221);
     padding: 8.5px 14px;
@@ -92,7 +86,6 @@ body {
     align-items: center;
     width: 100%;
 }
-
 
 .phone-avatar {
     width: 18px;
@@ -109,18 +102,16 @@ body {
 .phone-label {
     display: flex;
     font-size: 16px;
-   /* justify-self: center; */
-   margin-left:auto;
-   margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
     align-items: center;
 }
 
 .phone-btn:hover {
-       border-color: var(--primary);
+    border-color: var(--primary);
     background: var(--primary-bg);
 }
 
-/* Разделитель */
 .divider {
     display: flex;
     align-items: center;
@@ -162,17 +153,14 @@ label {
     background: var(--primary-bg);
 }
 
-/* Password wrapper */
 .password-wrapper {
     position: relative;
 }
 
-/* Pass label + forgot */
 .label-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: 15px; */
 }
 
 .forgot-link {
@@ -206,41 +194,35 @@ label {
     );
 }
 
-/* Текст под формой */
 .footer-text {
     text-align: center;
     color: #444;
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .footer-text a {
     color: rgb(226, 84, 108);
 }
 
-/* Контейнер с градиентом */
 .side-gradient {
     flex: 1;
     position: relative;
     overflow: hidden;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-image: radial-gradient(
         circle at bottom right,
         rgb(248, 148, 164),
         rgb(251, 189, 199),
         rgb(255, 254, 247)
     );
-
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-
     box-shadow: inset 15px 5px 40px rgba(0, 0, 0, 0.09);
 }
 
-/* Центрирование блока карточек */
 .reviews-center {
     width: 610px;
     height: 100%;
@@ -248,14 +230,12 @@ label {
     position: relative;
 }
 
-/* Анимация бесконечной прокрутки */
 .reviews-list {
     display: flex;
     flex-direction: column;
     animation: reviewsScroll 45s linear infinite;
 }
 
-/* Keyframes анимации */
 @keyframes reviewsScroll {
     0% {
         transform: translateY(0);
@@ -265,7 +245,6 @@ label {
     }
 }
 
-/* Сетка карточек */
 .reviews-masonry {
     column-count: 2;
     column-gap: 10px;
@@ -273,13 +252,11 @@ label {
     margin: auto;
 }
 
-/* Карточки */
 .review-card {
     background: white;
     padding: 20px 22px;
     border-radius: 16px;
     box-shadow: 0 4px 22px rgba(0, 0, 0, 0.08);
-
     margin-bottom: 10px;
     display: inline-block;
     width: 100%;
@@ -389,7 +366,7 @@ label {
 
 #login-phone,
 #register-phone {
-    caret-color: transparent; /* скрывает курсор */
+    caret-color: transparent;
 }
 
 .icon {
@@ -397,10 +374,9 @@ label {
     height: 10px;
 }
 
-#signin_phone{
+#signin_phone {
     justify-self: center;
 }
-
 
 #login-password {
     margin-bottom: 15px;
@@ -420,24 +396,16 @@ label {
     opacity: 1;
 }
 
-
 .github-btn {
     display: flex;
-    /* align-items: center;
-    justify-content: center; */
     padding: 8.5px 14px;
     width: 100%;
     border: 1px solid #dadce0;
     border-radius: 6px;
     background-color: #fff;
     color: #3c4043;
-    /* font-size: 14px;
-    font-weight: 500;
-    font-family: Arial, Helvetica, sans-serif; */
-
     text-decoration: none;
     cursor: pointer;
-
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -455,71 +423,50 @@ label {
     height: 18px;
 }
 
-.github-btn span{
+.github-btn span {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-/* ===================== */
-/* ADAPTIVE: <= 1046px   */
-/* ===================== */
-
 @media (max-width: 1046px) {
-
-
-    /* Правая часть */
     .side-gradient {
         width: 100%;
         min-height: 500px;
     }
 
-    /* Центр отзывов */
     .reviews-center {
         width: 100%;
-        /* padding: 20px; */
     }
 
-    /* === ВАЖНО === */
-    /* Masonry → 1 колонка */
     .reviews-masonry {
         column-count: 1;
         column-gap: 0;
-                width: 240px;
+        width: 240px;
     }
 
-    /* Карточки отзывов */
     .review-card {
         margin-bottom: 16px;
     }
 }
 
-/* ===================== */
-/* ADAPTIVE: <= 677px    */
-/* ===================== */
-
 @media (max-width: 677px) {
-
-    /* Убираем правую часть */
     .side-gradient {
         display: none;
     }
 
-    /* Layout — центрируем контент */
     .layout {
         justify-content: center;
         align-items: center;
     }
 
-    /* Левая карточка — центр экрана */
     .card {
-        width: 100%;          /* ФИКСИРОВАННАЯ ширина */
+        width: 100%;
         height: 100%;
         max-width: 400px;
         border-radius: 10px;
     }
 
-    /* Убираем лишние отступы body */
     body {
         margin: 8px;
     }

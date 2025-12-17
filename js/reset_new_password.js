@@ -1,8 +1,5 @@
 const API_URL = 'http://localhost:8080/signUp_page';
 
-// ===================================================================
-// ФУНКЦИЯ ОТКЛЮЧЕНИЯ КНОПКИ
-// ===================================================================
 function setButtonDisabled(button, disabled = true) {
     if (!button) return;
 
@@ -18,7 +15,7 @@ function showMessage(text, type = 'error') {
     el.classList.add(type === 'success' ? 'success' : 'error');
 }
 
-// Получаем токен из URL
+
 const urlParams = new URLSearchParams(window.location.search);
 const token = urlParams.get('token');
 
@@ -88,7 +85,6 @@ document
             console.log(err);
             showMessage('Ошибка соединения');
         } finally {
-            // кнопка всегда возвращается
             setButtonDisabled(submitBtn, false);
         }
     });

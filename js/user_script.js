@@ -1,15 +1,11 @@
 const API_URL = 'http://localhost:8080/signUp_page';
 
-// ===== Проверяем токен =====
 if (!localStorage.getItem('token')) {
     window.location.href = 'login.html';
 }
 
 const token = localStorage.getItem('token');
 
-// ================================
-// Универсальный запрос (НОВЫЙ)
-// ================================
 async function apiRequest(url, method = 'GET', body = null, isJson = false) {
     const options = {
         method,
@@ -33,131 +29,8 @@ async function apiRequest(url, method = 'GET', body = null, isJson = false) {
 
     return res.json();
 }
-
 // ================================
-// МОДАЛЬНОЕ ОКНО
-// ================================
-
-// const adminBtn = document.getElementById('admin-btn');
-// const modal = document.getElementById('admin-modal');
-// const closeModal = document.getElementById('close-modal');
-// const saveAdmin = document.getElementById('save-admin');
-
-// async function loadAdminContacts() {
-//     document.getElementById('admin-email').value =
-//         localStorage.getItem('email') || '';
-//     document.getElementById('admin-phone').value =
-//         localStorage.getItem('phone') || '';
-//     document.getElementById('admin-first-name').value =
-//         localStorage.getItem('firstname') || '';
-//     document.getElementById('admin-last-name').value =
-//         localStorage.getItem('lastname') || '';
-// }
-
-// adminBtn.addEventListener('click', async () => {
-//     await loadAdminContacts();
-//     modal.style.display = 'flex';
-// });
-
-// closeModal.addEventListener('click', () => {
-//     modal.style.display = 'none';
-// });
-
-// saveAdmin.addEventListener('click', async () => {
-//     const email = document.getElementById('admin-email').value.trim();
-//     const phone = document.getElementById('admin-phone').value.trim();
-//     const first_name = document.getElementById('admin-first-name').value.trim();
-//     const last_name = document.getElementById('admin-last-name').value.trim();
-//     const user_id = localStorage.getItem('user_id');
-
-//     if (!(email || phone)) {
-//         alert('Ошибка: поля email и номер телефона пустые');
-//         return;
-//     }
-
-//     const oldEmail = localStorage.getItem('email') ?? '';
-//     const oldPhone = localStorage.getItem('phone') ?? '';
-//     const oldFirstName = localStorage.getItem('firstname') ?? '';
-//     const oldLastName = localStorage.getItem('lastname') ?? '';
-
-//     const changedFields = [];
-
-//     if (email !== oldEmail) changedFields.push('email');
-//     if (phone !== oldPhone) changedFields.push('phone');
-//     if (first_name !== oldFirstName) changedFields.push('firstname');
-//     if (last_name !== oldLastName) changedFields.push('lastname');
-
-//     if (changedFields.length === 0) {
-//         alert('Вы не изменили данные');
-//         return;
-//     }
-
-//     console.log(first_name);
-//     console.log(last_name);
-
-//     const data = await apiRequest(
-//         `${API_URL}/update-contacts`,
-//         'PATCH',
-//         { email, phone, user_id, changedFields, first_name, last_name },
-//         true
-//     );
-
-//     if (data?.status) {
-//         localStorage.setItem('email', email);
-//         localStorage.setItem('phone', phone);
-//         localStorage.setItem('firstname', first_name);
-//         localStorage.setItem('lastname', last_name);
-//         alert('Данные сохранены');
-//         modal.style.display = 'none';
-//     } else {
-//         alert(data.error);
-//     }
-// });
-
-// ================================
-// сброс пароля в профиле
-// ================================
-
-document
-    .getElementById('reset-password-admin')
-    .addEventListener('click', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('admin-email').value.trim();
-        console.log(email);
-        if (!email) {
-            alert('Введите email');
-            return;
-        }
-
-        if (!email.includes('@')) {
-            alert('Некорректный email');
-            return;
-        }
-
-        alert('Отправляем ссылку...');
-
-        try {
-            const res = await fetch(`${API_URL}/reset-password/request`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
-            });
-
-            const data = await res.json();
-
-            if (!res.ok) {
-                alert(data.error || 'Ошибка');
-                return;
-            }
-
-            alert('Ссылка отправлена! Проверьте почту.');
-        } catch (err) {
-            alert('Ошибка соединения');
-        }
-    });
-
-// ================================
-// Подставляем имя пользователя
+// Подстановка имени пользователя
 // ================================
 function loadProfile() {
     const firstName = localStorage.getItem('firstname') || '';
@@ -186,7 +59,7 @@ function highlightAuthor(cardElement) {
 }
 
 // ================================
-// Загрузить всех авторов
+// Загрузка всех авторов
 // ================================
 async function loadAuthors() {
     const container = document.getElementById('authorsContainer');
@@ -246,7 +119,7 @@ async function loadAuthors() {
 loadAuthors();
 
 // ================================
-// Загрузить посты автора
+// Загрузка посты автора
 // ================================
 async function loadAuthorPosts(authorId) {
     const container = document.getElementById('postsContainer');
@@ -316,7 +189,7 @@ async function loadAuthorPosts(authorId) {
 }
 
 // ================================
-// Открыть страницу поста
+// Открытие страницу поста
 // ================================
 function openPost(postId) {
     window.location.href = `blog_page.html?id=${encodeURIComponent(postId)}`;
@@ -357,14 +230,12 @@ function escapeHtml(unsafe) {
 const burger = document.getElementById('burger');
 const menu = document.getElementById('mobileMenu');
 
-// Открытие / закрытие по бургеру
 burger.addEventListener('click', (e) => {
     e.stopPropagation();
     menu.classList.toggle('active');
     burger.classList.toggle('active');
 });
 
-// Закрытие при клике вне меню
 document.addEventListener('click', (e) => {
     if (!menu.contains(e.target) && !burger.contains(e.target)) {
         menu.classList.remove('active');
@@ -372,16 +243,14 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Закрытие при клике на кнопки внутри меню
 menu.querySelectorAll('button').forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        e.stopPropagation(); // ⬅ КЛЮЧЕВО
+        e.stopPropagation();
         menu.classList.remove('active');
         burger.classList.remove('active');
     });
 });
 
-// Закрытие при ресайзе на десктоп
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
         menu.classList.remove('active');

@@ -81,7 +81,7 @@
     // Ввод и управление курсором
     // =======================
     phoneInput.addEventListener('keydown', (e) => {
-        e.preventDefault(); // блокируем стандартный ввод
+        e.preventDefault();
 
         let digits = extractDigits(phoneInput.value);
         const code = getSelectedCode();
@@ -98,7 +98,6 @@
                 applyMask(digits);
             }
         }
-        // все остальные клавиши игнорируем
     });
 
     // =======================
@@ -146,7 +145,6 @@
         if (value.includes('X')) {
             e.preventDefault();
             msgBox.textContent = 'Заполните номер телефона полностью.';
-            // msgBox.style.color = 'red';
             phoneInput.focus();
             return;
         }
@@ -157,7 +155,6 @@
         if (!valid) {
             e.preventDefault();
             msgBox.textContent = 'Введите корректный номер телефона.';
-            // msgBox.style.color = 'red';
             phoneInput.focus();
         }
     });

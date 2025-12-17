@@ -4,14 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Вход MyBlog</title>
-        <link rel="stylesheet" href="../css/login.css" />
         <link rel="stylesheet" href="../css/style_sign_register.css" />
         <link rel="icon" href="../logo/head-logo.svg" type="image/png" />
     </head>
 
     <body>
         <div class="layout">
-            <!-- Левая панель -->
             <div class="card">
                 <a href="../index.html" class="logo-block">
                     <img
@@ -23,7 +21,6 @@
 
                 <h1 class="title">Войдите в свою учетную запись</h1>
 
-                <!-- ВХОД ЧЕРЕЗ ГУГЛ -->
                 <script
                     src="https://accounts.google.com/gsi/client"
                     async
@@ -36,7 +33,6 @@
                     data-callback="handleGoogleCredentialResponse"
                     data-auto_prompt="false"
                 ></div>
-                <!-- data-login_uri="http://localhost:8080/signUp_page/google" -->
                 <div
                     class="g_id_signin"
                     data-type="standard"
@@ -101,7 +97,6 @@
                         <label for="login-phone">Номер телефона</label>
 
                         <div class="phone-input-row">
-                            <!-- Кастомный селектор -->
                             <div class="country-picker" id="country-picker">
                                 <div
                                     class="country-selected"
@@ -144,7 +139,6 @@
                                 </div>
                             </div>
 
-                            <!-- Поле ввода -->
                             <input
                                 type="tel"
                                 id="login-phone"
@@ -169,7 +163,7 @@
                         />
 
                         <img
-                            src="../icon/eye-closed.png"
+                            src="../icon/eye-open.svg"
                             id="toggle-password"
                             class="eye-icon"
                             alt="Показать пароль"
@@ -189,11 +183,9 @@
                 </p>
             </div>
 
-            <!-- Правая часть (фон) -->
             <div class="side-gradient">
                 <div class="reviews-center">
                     <div class="reviews-list">
-                        <!-- Оригинальные карточки -->
                         <div class="reviews-masonry">
                             <div class="review-card">
                                 <img src="../avatar/user1.svg" />
@@ -368,7 +360,7 @@
 
         <script src="../js/auth.js"></script>
         <script src="../js/vvod_nomer.js"></script>
-        <!-- Подключение Google reCAPTCHA -->
+
         <script
             src="https://www.google.com/recaptcha/api.js"
             async
@@ -453,8 +445,8 @@
 
                     passwordInput.type = isHidden ? 'text' : 'password';
                     toggleIcon.src = isHidden
-                        ? '../icon/eye-open.svg'
-                        : '../icon/eye-closed.png';
+                        ? '../icon/eye-closed.png'
+                        : '../icon/eye-open.svg';
                 });
             });
         </script>

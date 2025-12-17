@@ -12,13 +12,12 @@ function setButtonDisabled(button, disabled = true) {
 }
 
 // ===================================================================
-// ФУНКЦИЯ ДЛЯ ВЫВОДА СООБЩЕНИЙ (ошибок и успеха) — теперь НЕ исчезают
+// ФУНКЦИЯ ДЛЯ ВЫВОДА СООБЩЕНИЙ
 // ===================================================================
 function showMessage(elementId, message, type = 'error') {
     const el = document.getElementById(elementId);
     if (!el) return;
 
-    // Очистка старых классов
     el.className = 'msg-box';
     el.textContent = message;
     el.classList.add(type, 'show');
@@ -88,7 +87,7 @@ if (registerForm) {
                 showMessage('message', 'Подтвердите, что вы не робот');
                 return;
             }
-            // console.log(email);
+
             const res = await fetch(`${API_URL}/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -122,8 +121,6 @@ if (registerForm) {
                 showMessage('message', data.error || 'Ошибка регистрации');
                 return;
             }
-
-            // Определяем контакт и сохраняем в localStorage
             const contactValue = phone ? phone : email;
             if (contactValue) {
                 localStorage.setItem('contact', contactValue);
@@ -131,7 +128,7 @@ if (registerForm) {
 
             showMessage('message', 'Код успешно отправлен!', 'success');
             localStorage.setItem('last_page', 'register');
-            // Переход на страницу входа через 800мс
+
             setTimeout(() => {
                 window.location.href = 'confirm_code.html';
             }, 800);
@@ -201,7 +198,6 @@ if (loginForm) {
                 }),
             });
 
-            // ЧИТАЕМ СЫРОЙ ОТВЕТ (не JSON)
             const raw = await res.text();
             console.log('RAW RESPONSE LOGIN:', raw);
 
@@ -213,7 +209,7 @@ if (loginForm) {
                 showMessage('message', 'Ошибка на сервере');
                 return;
             }
-            // const data = await res.json();
+
             grecaptcha.reset();
 
             if (!res.ok) {
@@ -224,8 +220,6 @@ if (loginForm) {
             localStorage.setItem('contact', login);
 
             showMessage('message', 'Код успешно отправлен!', 'success');
-
-            // Переход на страницу входа через 800мс
 
             localStorage.setItem('last_page', 'login');
             setTimeout(() => {
@@ -339,7 +333,7 @@ function handleGoogleCredentialResponse(response) {
         });
 }
 
-// Инициализация Google Sign-In
+
 window.onload = () => {
     google.accounts.id.initialize({
         client_id:
@@ -351,8 +345,6 @@ window.onload = () => {
         theme: 'outline',
         size: 'large',
     });
-
-    // google.accounts.id.prompt();
 };
 
 // ===================================================================
@@ -391,7 +383,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             },
         });
 
-        // Проверяем HTTP статус
         if (!res.ok) {
             const text = await res.text();
             console.error('Ошибка при запросе профиля:', res.status, text);
@@ -418,7 +409,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const user = profile.user;
 
-        // Сохраняем данные пользователя
         localStorage.setItem('user_id', user.id);
         localStorage.setItem('role', user.role);
         localStorage.setItem('firstname', user.firstname);
@@ -429,7 +419,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         showMessage('message', 'Успешный вход через GitHub!', 'success');
 
-        // Перенаправление по роли
         if (user.role === 'author') {
             setTimeout(() => (window.location.href = 'main_page.html'), 800);
         } else if (user.role === 'user') {

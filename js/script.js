@@ -1,4 +1,3 @@
-// ===== Проверка токена =====
 if (!localStorage.getItem('token')) {
     window.location.href = 'login.html';
 }
@@ -9,10 +8,6 @@ const API_URL = 'http://localhost:8080/signUp_page';
 const token = localStorage.getItem('token');
 const user_id = localStorage.getItem('user_id');
 
-
-// ===================================================================
-// ФУНКЦИЯ ОТКЛЮЧЕНИЯ КНОПКИ
-// ===================================================================
 function setButtonDisabled(button, disabled = true) {
     if (!button) return;
 
@@ -21,14 +16,6 @@ function setButtonDisabled(button, disabled = true) {
     button.style.pointerEvents = disabled ? 'none' : 'auto';
 }
 
-// ===== Проверка роли =====
-// if (localStorage.getItem('role') !== 'admin') {
-//     window.location.href = 'user_main_page.html';
-// }
-
-// ================================
-// Универсальный запрос
-// ================================
 async function apiRequest(url, method = 'GET', body = null, isJson = false) {
     const options = {
         method,
@@ -54,19 +41,18 @@ async function apiRequest(url, method = 'GET', body = null, isJson = false) {
 }
 
 // ================================
-// Подстановка данных профиля
+// ПОДСТАНОВКА ДАННЫХ ПРОФИЛЯ
 // ================================
 function loadProfileFromLocal() {
     const firstName = localStorage.getItem('firstname') || '';
     const lastName = localStorage.getItem('lastname') || '';
     const blogName = localStorage.getItem('blogName') || '';
 
-    // Header
     document.getElementById('firstName').innerText = firstName;
     document.getElementById('lastName').innerText = lastName;
     document.getElementById('blogName').innerText = blogName;
 
-    // Mobile
+
     document.getElementById('firstNameMobile').innerText = firstName;
     document.getElementById('lastNameMobile').innerText = lastName;
     document.getElementById('blogNameMobile').innerText = blogName;
@@ -76,7 +62,7 @@ function loadProfileFromLocal() {
 loadProfileFromLocal();
 
 // ================================
-// Загрузка постов
+// ЗАГРУЗКА ПОСТОВ
 // ================================
 
 async function getPosts() {
@@ -93,7 +79,6 @@ async function getPosts() {
     }
 
     data.forEach((post) => {
-        // Заменяем символы новой строки на <br> для отображения в HTML
         const formattedBody = post.body.replace(/\n/g, '<br>');
 
         container.innerHTML += `
@@ -176,7 +161,6 @@ function selectPost(id, title, body) {
     currentEditId = id;
     const decodedBody = decodeURIComponent(body);
 
-    // Для отображения текста в поле редактирования заменяем <br> обратно на \n
     document.getElementById('title-edit').value = title;
     document.getElementById('body-edit').value = decodedBody;
 }
