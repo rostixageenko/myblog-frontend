@@ -29,6 +29,57 @@ async function apiRequest(url, method = 'GET', body = null, isJson = false) {
 
     return res.json();
 }
+
+// ===================================================================
+// JWT CHECK
+// ===================================================================
+
+let lastJwtCheck = 0;
+const JWT_CHECK_INTERVAL = 30_000;
+
+async function checkJwtToken() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        logout();
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/auth/check`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (res.status === 401) {
+            logout();
+        }
+    } catch (e) {
+        console.warn('JWT check failed');
+    }
+}
+
+function throttledJwtCheck() {
+    const now = Date.now();
+    if (now - lastJwtCheck < JWT_CHECK_INTERVAL) return;
+    lastJwtCheck = now;
+    checkJwtToken();
+}
+
+['click', 'keydown', 'scroll', 'mousemove', 'touchstart'].forEach(
+    (event) => {
+        document.addEventListener(event, throttledJwtCheck, {
+            passive: true,
+        });
+    }
+);
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkJwtToken();
+});
+
 // ================================
 // Подстановка имени пользователя
 // ================================

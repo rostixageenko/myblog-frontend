@@ -6,6 +6,30 @@ function setButtonDisabled(button, disabled = true) {
     button.style.pointerEvents = disabled ? 'none' : 'auto';
 }
 
+async function apiRequest(url, method = 'GET', body = null, isJson = false) {
+    const options = {
+        method,
+        headers: { Authorization: `Bearer ${token}` },
+    };
+
+    if (isJson && body) {
+        options.headers['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(body);
+    }
+
+    if (body instanceof FormData) options.body = body;
+
+    const res = await fetch(url, options);
+
+    if (res.status === 401) {
+        localStorage.clear();
+        window.location.href = 'login.html';
+        return null;
+    }
+
+    return res.json();
+}
+
 // ================================
 // МОДАЛЬНОЕ ОКНО
 // ================================
@@ -80,9 +104,9 @@ saveAdmin.addEventListener('click', async (e) => {
 
     try {
         const data = await apiRequest(
-            'http://localhost:8080/signUp_page/update-contacts',
+            `${API_URL}/update-contacts`,
             'PATCH',
-            { email, phone, user_id, changedFields, first_name, last_name },
+            { email, phone, first_name, last_name, changedFields },
             true
         );
 
@@ -176,28 +200,13 @@ if (deleteAccountBtn) {
         setButtonDisabled(btn, true);
 
         try {
-            const res = await fetch(
-                'http://localhost:8080/signUp_page/delete-account',
-                {
-                    method: 'DELETE',
-                    body: JSON.stringify({ user_id }),
-                }
+            const data = await apiRequest(
+                `${API_URL}/delete-account`,
+                'DELETE'
             );
 
-            const raw = await res.text();
-            console.log('RAW RESPONSE LOGIN:', raw);
-
-            let data;
-            try {
-                data = JSON.parse(raw);
-            } catch (e) {
-                console.error('Сервер вернул НЕ JSON:', raw);
-                showMessage('message', 'Ошибка на сервере');
-                return;
-            }
-
-            if (!res.ok) {
-                alert(data.error || data.message || 'Ошибка удаления аккаунта');
+            if (!data?.status) {
+                alert(data?.error || 'Ошибка удаления');
                 return;
             }
 
